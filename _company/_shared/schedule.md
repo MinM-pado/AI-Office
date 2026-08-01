@@ -1,25 +1,30 @@
 # 📋 통합 스케줄
-_업데이트: 2026. 8. 1. 오후 4:28:19_
+_업데이트: 2026. 8. 1. 오후 4:59:06_
 
 ## 🤖 에이전트 최근 활동
 ### 📺 레오
 - [2026-08-01] {   "openapi": "3.1.0",   "info": {     "title": "토스증권 Open API",     "version": "1.2.5"   },   "servers": [     {       "url": "https://openapi.tossinvest.com"     }   ],   "security": [     {       "oauth2ClientCredentials": []     }   ],   "tags": [     {       "name": "Auth",       "description"
 - [2026-08-01] 토스 증권에 대한 YouTube 채널 구축 (링크 제공, 사용자 동영상 제작) → 자격증명 부족으로 차단됨
 - [2026-08-01] 매월 주요 스토리라인과 데이터 기반 컨텐츠 구체적인 아이디어를 포함한 최소 3개의 영상 제작 계획. → 자격증명 부족으로 차단됨
+### 🎨 Designer
+- [2026-08-01] UI/UX 디자인 (페이지 구조, 스타일, 컨셉)을 위해 기본적인 wireframe 및 흐름도를 제작하고, 사용자 친화적인 인터페이스를 제공합니다. → 산출물 sessions/2026-08-01T07-46/designer.md
+- [2026-08-01] 핵심 대시보드 프로토타이핑 진행 및 디자인.  초안 및 기존 대비, 가치 있는 단일 작업 선택과 작품 꾸미기. → 산출물 sessions/2026-08-01T07-50/designer.md
 ### 💻 코다리
-- [2026-08-01] 토스 증권 API 주소 및 구조, 사용 방법, 예제 코드 제공 → 산출물 sessions/2026-08-01T06-40/developer.md
 - [2026-08-01] 토스 증권 API 관련 정보와 Client ID를 파악하여 코드로 구현 → 산출물 sessions/2026-08-01T07-04/developer.md
 - [2026-08-01] Client ID 및 Client Secret를 사용하여 API 키와 토큰을 생성 및 요청할 시, 코드를 작성하세요. → 산출물 sessions/2026-08-01T07-11/developer.md
+- [2026-08-01] 기존 UI/UX 디자인의 틀과 플랫폼(React, Vue.js 등)을 활용하여 프론트 페이지 코드 작성 및 구축 (HTML, CSS, JavaScript) → 산출물 sessions/2026-08-01T07-46/developer.md
 ### 💼 현빈
-- [2026-08-01] {   "openapi": "3.1.0",   "info": {     "title": "토스증권 Open API",     "version": "1.2.5"   },   "servers": [     {       "url": "https://openapi.tossinvest.com"     }   ],   "security": [     {       "oauth2ClientCredentials": []     }   ],   "tags": [     {       "name": "Auth",       "description"
-- [2026-08-01] 회사 목표와 개인 목표를 설정하고, 최근 의사결정 및 메모리를 검토하여 가장 가치 있는 단일 작업을 선택합니다. → 산출물 sessions/2026-08-01T06-50/business.md
 - [2026-08-01] 회사 목표와 개인 목표를 정리하고, 현재 가장 가치 있는 단일 작업을 결정 → 산출물 sessions/2026-08-01T07-20/business.md
+- [2026-08-01] 최근 의사결정·메모리를 검토해서 지금 가장 가치 있는 단일 작업 1개를 결정하고, 적절한 1~2명 에이전트에게 분배합니다. 같은 산출물을 반복하지 마세요 — 메모리에 비슷한 항목이 24시간 내에 있으면 다른 각도로 진전시키세요 → 산출물 sessions/2026-08-01T07-35/business.md
+- [2026-08-01] 기업 목표 설정 및 가치 창출, 수익 모델 개발 및 분석. 단순 데이터 연동으로 한정된 예시와 시각적 표현을 통해 잠재적인 아이디어를 제시. → 산출물 sessions/2026-08-01T07-50/business.md
 ### 📱 영숙
 - [2026-08-01] 현재 진행 중인 일과 최우선 작업 목록을 관리 및 분담 합니다.  → 산출물 sessions/2026-08-01T06-50/secretary.md
+- [2026-08-01] 일정 관리 및 업무 분할 및 보고서 작성 및 관리 → 산출물 sessions/2026-08-01T07-50/secretary.md
 ### ✍️ Writer
 - [2026-08-01] 증권 관련 대시보드 작성 (설명, 데이터 수집, 형식, 목적) → 산출물 sessions/2026-08-01T06-32/writer.md
 - [2026-08-01] Final_Business_Strategy_Report.md 파일을 작성합니다. → 산출물 sessions/2026-08-01T07-25/writer.md
 ### 🔍 Researcher
 - [2026-08-01] API 문서, 관련 사항 조사 → 산출물 sessions/2026-08-01T06-40/researcher.md
 - [2026-08-01]  최근 의사결정·메모리를 검토하여 지금 가장 가치 있는 단일 작업 1개를 결정 → 산출물 sessions/2026-08-01T07-20/researcher.md
+- [2026-08-01] 주제별 데이터 수집 및 분석, 상황 변화에 대한 대응, 최신 정보 갱신 및 개인 목표에 대한 적용 → 산출물 sessions/2026-08-01T07-50/researcher.md
 
