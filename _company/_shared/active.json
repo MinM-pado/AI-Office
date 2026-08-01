@@ -32,5 +32,6 @@
   "researcher": {
     "activatedAt": "2026-05-22T09:19:28.026Z",
     "seeded": true
-  }
+  },
+  "_migrated_v3": true
 }
