@@ -733,3 +733,11 @@ body.dark-theme {
 }
 
 .rule-list strong { color: var(--text-main); }
+
+
+/* Demo safety state */
+.demo-notice { padding: 10px 24px; background: rgba(245, 158, 11, .12); border-bottom: 1px solid rgba(245, 158, 11, .35); color: #fde68a; font-size: 12px; line-height: 1.5; }
+.api-status-badge.demo { background: rgba(245, 158, 11, .12); border-color: rgba(245, 158, 11, .35); color: #fbbf24; }
+.api-status-badge.demo .status-dot { background-color: #fbbf24; }
+.t-chip { border: 1px solid var(--border-glass); font-family: inherit; }
+@media (max-width: 900px) { .top-nav, .hero-banner { flex-direction: column; gap: 12px; align-items: stretch; } .workspace { flex-direction: column; overflow: visible; } .sidebar { width: 100%; } .grid-2col, .order-sandbox { grid-template-columns: 1fr; } .nav-ticker-bar { display: none; } }
