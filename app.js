@@ -194,191 +194,99 @@ const tossRankingsData = [
 let currentThemeKey = 'semicon';
 let currentBriefingKey = 'pre';
 
+
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
     initThemeChips();
-    initBriefingModes();
-    updateThemeUI(currentThemeKey);
     renderTossRankings(tossRankingsData);
     initOrderSandbox();
     initSyncButton();
 });
 
-// Sidebar Tab Navigation
 function initNavigation() {
-    const navButtons = document.querySelectorAll('.nav-btn');
-    const tabPanels = document.querySelectorAll('.tab-panel');
-
-    navButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const targetTab = btn.getAttribute('data-tab');
-
-            navButtons.forEach(b => b.classList.remove('active'));
-            tabPanels.forEach(p => p.classList.remove('active'));
-
-            btn.classList.add('active');
-            const targetElem = document.getElementById(targetTab);
-            if (targetElem) targetElem.classList.add('active');
-        });
-    });
+    const buttons = document.querySelectorAll('.nav-btn');
+    const panels = document.querySelectorAll('.tab-panel');
+    buttons.forEach((button) => button.addEventListener('click', () => {
+        const panel = document.getElementById(button.dataset.tab);
+        if (!panel) return;
+        buttons.forEach((item) => item.classList.remove('active'));
+        panels.forEach((item) => item.classList.remove('active'));
+        button.classList.add('active');
+        panel.classList.add('active');
+    }));
 }
 
-// 8 Theme Chips Interactive Switcher
 function initThemeChips() {
     const chips = document.querySelectorAll('#themeChipsGroup .t-chip');
-    chips.forEach(chip => {
-        chip.addEventListener('click', () => {
-            const themeKey = chip.getAttribute('data-theme');
-            if (!themeKey || !themeDataMap[themeKey]) return;
-
-            chips.forEach(c => c.classList.remove('active'));
-            chip.classList.add('active');
-
-            currentThemeKey = themeKey;
-            updateThemeUI(themeKey);
-        });
-    });
+    chips.forEach((chip) => chip.addEventListener('click', () => {
+        const data = themeDataMap[chip.dataset.theme];
+        if (!data) return;
+        chips.forEach((item) => item.classList.remove('active'));
+        chip.classList.add('active');
+        renderInsights(data.insights);
+        renderHoldings(data.stocks);
+    }));
+    renderInsights(themeDataMap.semicon.insights);
+    renderHoldings(themeDataMap.semicon.stocks);
 }
 
-// 3 Daily Briefing Modes Switcher (장전 / 장중 / 장마감)
-function initBriefingModes() {
-    const modeBtns = document.querySelectorAll('#briefingModeGroup .pill-btn');
-    modeBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const briefingKey = btn.getAttribute('data-briefing');
-            if (!briefingKey || !briefingModeMap[briefingKey]) return;
-
-            modeBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            currentBriefingKey = briefingKey;
-            const bData = briefingModeMap[briefingKey];
-
-            document.getElementById('briefingTitle').innerText = bData.title;
-            document.getElementById('briefingDesc').innerText = bData.desc;
-            document.getElementById('reportTimeBadge').innerText = bData.badge;
-        });
-    });
+function renderInsights(insights) {
+    const list = document.getElementById('insightList');
+    if (!list) return;
+    list.replaceChildren(...insights.map((insight) => {
+        const item = document.createElement('li');
+        item.textContent = insight.replace(/<[^>]+>/g, '');
+        return item;
+    }));
 }
 
-// Dynamic UI Update for Selected Theme
-function updateThemeUI(themeKey) {
-    const tData = themeDataMap[themeKey];
-    if (!tData) return;
-
-    // Header & Stat Cards Update
-    document.getElementById('selectedThemeVal').innerText = tData.name;
-    document.getElementById('selectedThemeSub').innerText = tData.sub;
-    document.getElementById('foreignSupplyVal').innerText = tData.supplyVal;
-    document.getElementById('foreignSupplySub').innerText = tData.supplySub;
-
-    // Briefing Report Card Update
-    document.getElementById('reportHeaderTitle').innerText = tData.headerTitle;
-    document.getElementById('bMarketRow').innerText = tData.marketRow;
-    document.getElementById('bKoreaRow').innerText = tData.koreaRow;
-    document.getElementById('bThemeRow').innerText = tData.themeRow;
-
-    // MinM 3-Line Insights Update
-    const insightList = document.getElementById('insightList');
-    if (insightList) {
-        insightList.innerHTML = tData.insights.map(item => `<li>${item}</li>`).join('');
-    }
-
-    // Right Side Theme Stocks & Holdings Update
-    document.getElementById('rightPanelTitle').innerText = `${tData.name} 대표 종목 & 잔고`;
-    renderHoldings(tData.stocks);
-}
-
-// Render Holdings List
 function renderHoldings(stocks) {
     const container = document.getElementById('holdingsList');
     if (!container) return;
-
-    container.innerHTML = stocks.map(item => `
-        <div class="holding-item">
-            <div class="h-info">
-                <span class="h-name">${item.name}</span>
-                <span class="h-qty">수량: ${item.qty} | 평단가: ${item.avgPrice}</span>
-            </div>
-            <div class="h-val-box">
-                <span class="h-eval">${item.evalPrice}</span>
-                <div class="h-pnl ${item.pnl.includes('+') ? 'pos' : ''}">${item.pnl}</div>
-            </div>
-        </div>
-    `).join('');
+    container.replaceChildren(...stocks.map((stock) => {
+        const item = document.createElement('div');
+        item.className = 'holding-item';
+        item.textContent = `${stock.name} · 예시 수량 ${stock.qty} · 예시 평가금액 ${stock.evalPrice} · ${stock.pnl}`;
+        return item;
+    }));
 }
 
-// Render Toss Rankings Table
 function renderTossRankings(data) {
-    const tbody = document.querySelector('#tossRankingTable tbody');
-    if (!tbody) return;
-
-    tbody.innerHTML = data.map(item => `
-        <tr>
-            <td><strong>${item.rank}</strong></td>
-            <td><strong>${item.name}</strong> <span style="font-size:11px; color:#6b7280;">(${item.code})</span></td>
-            <td><strong>${item.price}</strong></td>
-            <td class="text-pos">${item.change}</td>
-            <td>${item.volume}</td>
-            <td><span class="pill-tag">${item.theme}</span></td>
-            <td><span class="ai-tag ${item.signalType}">${item.signal}</span></td>
-        </tr>
-    `).join('');
+    const body = document.querySelector('#tossRankingTable tbody');
+    if (!body) return;
+    body.replaceChildren(...data.map((row) => {
+        const tr = document.createElement('tr');
+        [row.rank, `${row.name} (${row.code})`, row.price, row.change, row.volume, row.theme, row.signal].forEach((value) => {
+            const td = document.createElement('td');
+            td.textContent = value;
+            tr.appendChild(td);
+        });
+        return tr;
+    }));
 }
 
-// Order Sandbox Trigger Simulation
 function initOrderSandbox() {
-    const btnExecute = document.getElementById('btnExecuteOrder');
-
-    if (btnExecute) {
-        btnExecute.addEventListener('click', () => {
-            const symbol = document.getElementById('orderSymbol').value;
-            const type = document.getElementById('orderType').value;
-            const targetPrice = document.getElementById('targetPrice').value;
-            const stopLoss = document.getElementById('stopLossPrice').value;
-
-            const timeStr = new Date().toLocaleTimeString();
-
-            logTerminal(`[${timeStr}] [POST] /api/v1/conditional-orders Request sent...`, 'sys');
-            logTerminal(`Headers: { X-Tossinvest-Account: "1", Authorization: "Bearer toss_live_tok_..." }`, 'sys');
-            
-            setTimeout(() => {
-                logTerminal(`[PAYLOAD] Symbol=${symbol}, GroupType=${type}, Target=${Number(targetPrice).toLocaleString()}KRW, StopLoss=${Number(stopLoss).toLocaleString()}KRW`, 'sys');
-            }, 300);
-
-            setTimeout(() => {
-                logTerminal(`[200 OK] Toss Securities API Success: OrderID="TOSS_${Math.floor(Math.random()*900000+100000)}", Status="OPEN"`, 'success');
-                alert(`✅ 토스증권 API 조건주문 (${type}) 등록 성공!\n종목코드: ${symbol}\n목표 익절가: ${Number(targetPrice).toLocaleString()}원 / 손절 기준가: ${Number(stopLoss).toLocaleString()}원`);
-            }, 800);
-        });
-    }
+    const button = document.getElementById('btnExecuteOrder');
+    if (!button) return;
+    button.addEventListener('click', () => {
+        logTerminal('[DEMO] 주문 시뮬레이션을 실행했습니다. 실제 주문은 전송되지 않았습니다.', 'sys');
+        logTerminal('[SAFETY] 실제 주문은 서버 측 OAuth·명시적 확인·위험 한도·감사 로그 구현 이후에만 검토해야 합니다.', 'success');
+        alert('데모 모드입니다. 실제 주문은 전송되지 않았습니다.');
+    });
 }
 
-function logTerminal(msg, type = 'sys') {
-    const logBox = document.getElementById('terminalLog');
-    if (!logBox) return;
-
-    const p = document.createElement('p');
-    p.className = type;
-    p.innerText = msg;
-    logBox.appendChild(p);
-    logBox.scrollTop = logBox.scrollHeight;
+function logTerminal(message, type = 'sys') {
+    const log = document.getElementById('terminalLog');
+    if (!log) return;
+    const line = document.createElement('p');
+    line.className = type;
+    line.textContent = message;
+    log.appendChild(line);
+    log.scrollTop = log.scrollHeight;
 }
 
-// Data Sync Button
 function initSyncButton() {
-    const btnSync = document.getElementById('btnSyncToss');
-    if (btnSync) {
-        btnSync.addEventListener('click', () => {
-            const icon = btnSync.querySelector('i');
-            icon.classList.add('fa-spin');
-            btnSync.disabled = true;
-            
-            setTimeout(() => {
-                icon.classList.remove('fa-spin');
-                btnSync.disabled = false;
-                alert('⚡ 토스증권 Open API 실시간 시세 및 MinM 수급 동기화가 완료되었습니다.');
-            }, 800);
-        });
-    }
+    const button = document.getElementById('btnSyncToss');
+    if (!button) return;
+    button.addEventListener('click', () => alert('데모 데이터를 다시 표시했습니다. 외부 API 호출은 수행하지 않았습니다.'));
 }
