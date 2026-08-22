@@ -119,3 +119,8 @@ _세션: 2026-08-01T09-47_
 - PayPal Developer Dashboard에서 Client ID/Secret를 복사 후 외부 연결패널에 입력.
 - 사장님이 PayPal Developer Dashboard 에서 Client ID/Secret를 복사하여 외부 연결 패널에 입력.
 _세션: 2026-08-22T06-30_
+
+## [2026-08-22] [모닝 브리핑] 오늘 날짜는 2026-08-22입니다. 회사 목표(goals.md)와 지금까지의 의사결정 로
+- PayPal API 인증을 재연결하고 에러 로그를 분석하여 실시간 금융 데이터 확보가 가능한 환경 조성.
+- Writer에게 경쟁사 ROI 분석을 위한 구체적인 조사 항목(Key Metrics)과 자료 수집 지시
+_세션: 2026-08-22T06-29_
