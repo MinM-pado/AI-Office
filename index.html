@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MinM Briefing </title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Pretendard:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dark-theme">
+    <div id="app" class="glass-layout">
+
+        <!-- Header Navigation Bar -->
+        <header class="top-nav">
+            <div class="nav-brand">
+                <div class="logo-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <div class="logo-text">
+                    <span class="brand-title">MinM Briefing</span>
+                    <span class="brand-sub">AI Office x 토스증권 Open API Hub</span>
+                </div>
+            </div>
+
+            <!-- Real-time Market Indices & Currency Ticker -->
+            <div class="nav-ticker-bar">
+                <div class="ticker-item pos"><span class="t-name">코스피</span> <span class="t-price">2,611.45</span> <span
+                        class="t-change">+0.85%</span></div>
+                <div class="ticker-item pos"><span class="t-name">코스닥</span> <span class="t-price">764.20</span> <span
+                        class="t-change">+1.12%</span></div>
+                <div class="ticker-item neg"><span class="t-name">나스닥</span> <span class="t-price">17,890.30</span>
+                    <span class="t-change">+1.20%</span>
+                </div>
+                <div class="ticker-item"><span class="t-name">원/달러 환율</span> <span class="t-price">1,335.50원</span>
+                    <span class="t-change text-sub">(-2.5원)</span>
+                </div>
+            </div>
+
+            <!-- Toss API Connection & System Status -->
+            <div class="nav-actions">
+                <div class="api-status-badge online" id="tossApiStatus">
+                    <span class="status-dot pulse"></span>
+                    <span class="status-label">토스 API 연동중</span>
+                    <span class="account-badge">BROKERAGE</span>
+                </div>
+                <button class="btn btn-primary" id="btnSyncToss"><i class="fa-solid fa-arrows-rotate"></i> 실시간 수급
+                    동기화</button>
+            </div>
+        </header>
+
+        <!-- Main Workspace Layout -->
+        <div class="workspace">
+
+            <!-- Sidebar Navigation Menu -->
+            <aside class="sidebar">
+                <div class="nav-menu">
+                    <button class="nav-btn active" data-tab="tab-jam-briefing">
+                        <i class="fa-solid fa-newspaper"></i>
+                        <span>MinM Jam 브리핑</span>
+                    </button>
+                    <button class="nav-btn" data-tab="tab-toss-ranking">
+                        <i class="fa-solid fa-fire"></i>
+                        <span>토스증권 실시간 랭킹</span>
+                    </button>
+                    <button class="nav-btn" data-tab="tab-fact-check">
+                        <i class="fa-solid fa-square-check"></i>
+                        <span>예측 vs 실제 팩트검증</span>
+                    </button>
+                    <button class="nav-btn" data-tab="tab-order-sandbox">
+                        <i class="fa-solid fa-robot"></i>
+                        <span>토스 조건주문 (OCO/OTO)</span>
+                    </button>
+                    <button class="nav-btn" data-tab="tab-jam-rules">
+                        <i class="fa-solid fa-book"></i>
+                        <span>Jam 시스템 규칙 & 템플릿</span>
+                    </button>
+                </div>
+
+                <!-- MinM Identity Box -->
+                <div class="agent-compact-widget">
+                    <div class="widget-header">
+                        <i class="fa-solid fa-shield-halved"></i> MinM 페르소나 & 원칙
+                    </div>
+                    <div class="persona-box-compact">
+                        <p class="p-quote">"근거 없는 추론을 배제하고, 수급·환율·금리의 복합 작용을 바탕으로 팩트에 기반한 시장의 맥을 짚는다."</p>
+                        <div class="p-rule-tag">Candid Insight · 3초 핵심 파악</div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main class="main-content">
+
+                <!-- TAB 1: MinM Jam 브리핑 (장전 / 장중 / 장마감) -->
+                <section id="tab-jam-briefing" class="tab-panel active">
+                    <div class="hero-banner">
+                        <div class="hero-text">
+                            <div class="badge-row">
+                                <span class="pill-tag active">🌅 [장전 브리핑]</span>
+                                <span class="pill-tag">☀️ [장중]</span>
+                                <span class="pill-tag">🌇 [장마감]</span>
+                            </div>
+                            <h2>MinM Jam Daily Briefing (2026-08-22)</h2>
+                            <p>토스증권 API 연동 데이터 & 실시간 인과관계 추론 엔진 기반 Daily Market Report</p>
+                        </div>
+                        <div class="hero-stats">
+                            <div class="stat-card">
+                                <span class="stat-title">주력 이슈 테마</span>
+                                <span class="stat-val">半도체 · AI</span>
+                                <span class="stat-sub pos">수급/기술/실적 모멘텀</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-title">외국인/기관 수급</span>
+                                <span class="stat-val">순매수 전환</span>
+                                <span class="stat-sub">전기전자 중심 유입</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 8대 고정 테마 탭/칩 바 -->
+                    <div class="theme-bar-panel">
+                        <div class="theme-title"><i class="fa-solid fa-layer-group"></i> 8대 고정 테마 status</div>
+                        <div class="theme-chips">
+                            <span class="t-chip active">🔥 1. 반도체·AI (강세)</span>
+                            <span class="t-chip">⚡ 2. 2차전지</span>
+                            <span class="t-chip">🚢 3. 조선</span>
+                            <span class="t-chip">⚛️ 4. 원전·에너지</span>
+                            <span class="t-chip">🏗️ 5. 건설·정책</span>
+                            <span class="t-chip">🧬 6. 바이오</span>
+                            <span class="t-chip">💻 7. IT·콘텐츠</span>
+                            <span class="t-chip">💄 8. 화장품/소비재</span>
+                        </div>
+                    </div>
+
+                    <!-- Briefing Main Content Grid -->
+                    <div class="grid-2col margin-top">
+                        <!-- Left: MinM Core Briefing Report -->
+                        <div class="card-panel">
+                            <div class="panel-header">
+                                <h3><i class="fa-solid fa-file-contract text-accent"></i> MinM 인사이트: 장전 글로벌 & 국내증시 요약
+                                </h3>
+                                <span class="time-badge">08:30 AM Live</span>
+                            </div>
+                            <div class="briefing-content-box">
+                                <div class="b-row">
+                                    <span class="b-label">뉴욕증시</span>
+                                    <strong>나스닥 +1.2% 상승 마감 · 엔비디아/AI 반도체 랠리 지속</strong>
+                                </div>
+                                <div class="b-row">
+                                    <span class="b-label">국내증시</span>
+                                    <strong>코스피 2,611 / 코스닥 764 · 외국인 순매수세 재개</strong>
+                                </div>
+                                <div class="b-row">
+                                    <span class="b-label">이슈 테마</span>
+                                    <strong>AI 반도체 & 온디바이스 AI · 외국인 수급 및 실적 가시성 확보</strong>
+                                </div>
+
+                                <hr class="divider">
+
+                                <div class="minm-insight-card">
+                                    <h4><i class="fa-solid fa-brain"></i> MinM Analysis Engine (인과관계 3줄 추론)</h4>
+                                    <ol class="insight-list">
+                                        <li><strong>환율 하락 & 금리 안점:</strong> 원/달러 환율이 1,335원대로 안정되며 외국인 매수세 유입 여건 마련.
+                                        </li>
+                                        <li><strong>AI 반도체 체결량 급증:</strong> 토스증권 체결 데이터 기준 SK하이닉스 및 한미반도체에 대량 거래대금 집중.
+                                        </li>
+                                        <li><strong>Next Step 액션:</strong> 추격 매수는 지양하고, 20일선 눌림목 형성 시 분할 매수 관점 접근 권장.
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Toss Securities Live Account & Watchlist -->
+                        <div class="card-panel">
+                            <div class="panel-header">
+                                <h3><i class="fa-solid fa-wallet text-highlight"></i> 토스증권 내 계좌 실시간 보유 현황</h3>
+                                <span class="pill-tag">Header: X-Tossinvest-Account</span>
+                            </div>
+                            <div class="holdings-list" id="holdingsList">
+                                <!-- Dyn Populated JS -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 2: 토스증권 실시간 랭킹 (Top 100) -->
+                <section id="tab-toss-ranking" class="tab-panel">
+                    <div class="card-panel">
+                        <div class="panel-header">
+                            <h3><i class="fa-solid fa-fire text-accent"></i> 토스증권 실시간 랭킹 (Toss Securities OpenAPI)</h3>
+                            <div class="btn-group">
+                                <button class="btn-sm active" id="btnRankAmount">토스증권 거래대금 상위</button>
+                                <button class="btn-sm" id="btnRankGainers">급상승 (Top Gainers)</button>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="custom-table" id="tossRankingTable">
+                                <thead>
+                                    <tr>
+                                        <th>순위</th>
+                                        <th>종목명 (코드)</th>
+                                        <th>현재가</th>
+                                        <th>등락률</th>
+                                        <th>토스증권 거래대금</th>
+                                        <th>MinM 테마 분류</th>
+                                        <th>AI 수급 판정</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Populated JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 3: 예측 vs 실제 팩트검증 (Fact Check Table) -->
+                <section id="tab-fact-check" class="tab-panel">
+                    <div class="card-panel">
+                        <div class="panel-header">
+                            <h3><i class="fa-solid fa-scale-balanced"></i> Jam 시스템 팩트 검증 (장전 전망 vs 장마감 실제 결과)</h3>
+                            <span class="pill-tag">무결성 검증 100%</span>
+                        </div>
+                        <p class="section-sub">"근거 없는 가상 수치는 금지한다. 장전 전망과 실제 장마감 결과를 비교하여 예측 적중률을 사실 그대로 검증한다."</p>
+
+                        <div class="table-responsive margin-top">
+                            <table class="custom-table fact-table">
+                                <thead>
+                                    <tr>
+                                        <th>테마 / 핵심 종목</th>
+                                        <th>장전 전망 (Prediction)</th>
+                                        <th>장마감 실제 결과 (Actual)</th>
+                                        <th>적중 여부 (Fact Check)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>半도체·AI</strong><br><small>삼성전자, SK하이닉스</small></td>
+                                        <td>엔비디아 상승 호재로 외국인 수급 집중 강세 전망</td>
+                                        <td>SK하이닉스 +3.42%, 삼성전자 +1.91% 상승 마감</td>
+                                        <td><span class="badge-fit fit">🎯 적중 (Match)</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>2차전지</strong><br><small>LG에너지솔루션, POSCO홀딩스</small></td>
+                                        <td>리튬 가격 보합세로 장중 박스권 보합 전망</td>
+                                        <td>LG엔솔 +0.92%, POSCO -0.45% 혼조세 마감</td>
+                                        <td><span class="badge-fit fit">🎯 적중 (Match)</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>조선 / 해운</strong><br><small>HD한국조선해양, 한화오션</small></td>
+                                        <td>신조선가 지수 상승에 따른 강보합 개장 전망</td>
+                                        <td>수주 모멘텀 지속으로 +2.15% 강세 마감</td>
+                                        <td><span class="badge-fit fit">🎯 적중 (Match)</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>건설 · 정책</strong><br><small>GS건설, 현대건설</small></td>
+                                        <td>금리 인하 기대감으로 반등 시도 전망</td>
+                                        <td>기관 매도물량 유입으로 -1.10% 약세 마감</td>
+                                        <td><span class="badge-fit warn">⚠️ 불일치 (Miss)</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 4: 토스 조건주문 (OCO/OTO) 매매 실행기 -->
+                <section id="tab-order-sandbox" class="tab-panel">
+                    <div class="card-panel">
+                        <div class="panel-header">
+                            <h3><i class="fa-solid fa-bolt"></i> 토스증권 OpenAPI 조건주문 (Single / OCO / OTO) 자동 트리거</h3>
+                        </div>
+                        <div class="order-sandbox">
+                            <div class="sandbox-inputs">
+                                <div class="form-group">
+                                    <label>대상 종목</label>
+                                    <select class="form-control" id="orderSymbol">
+                                        <option value="005930">삼성전자 (005930)</option>
+                                        <option value="000660" selected>SK하이닉스 (000660)</option>
+                                        <option value="042700">한미반도체 (042700)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>주문 조건 (Conditional Group)</label>
+                                    <select class="form-control" id="orderType">
+                                        <option value="OCO" selected>OCO (One-Cancels-the-Other: 익절/손절 동시 감시)</option>
+                                        <option value="OTO">OTO (One-Triggers-the-Other: 체결 후 감시 시작)</option>
+                                        <option value="SINGLE">SINGLE (단일 감시 조건)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>목표 익절가 (KRW)</label>
+                                    <input type="number" class="form-control" id="targetPrice" value="205000">
+                                </div>
+                                <div class="form-group">
+                                    <label>손절 기준가 (KRW)</label>
+                                    <input type="number" class="form-control" id="stopLossPrice" value="180000">
+                                </div>
+                                <button class="btn btn-accent" id="btnExecuteOrder"><i
+                                        class="fa-solid fa-paper-plane"></i> 토스증권 조건주문 전송 (POST)</button>
+                            </div>
+                            <div class="sandbox-terminal">
+                                <div class="terminal-header"><i class="fa-solid fa-terminal"></i> Toss OpenAPI Live
+                                    Execution Logs</div>
+                                <div class="terminal-body" id="terminalLog">
+                                    <p class="sys">[OAUTH2] Bearer toss_live_access_tok_... OK</p>
+                                    <p class="sys">[HEADER] X-Tossinvest-Account: 1 (BROKERAGE)</p>
+                                    <p class="sys">[ENDPOINT] POST
+                                        https://openapi.tossinvest.com/api/v1/conditional-orders</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 5: Jam 시스템 규칙 & 템플릿 안내 -->
+                <section id="tab-jam-rules" class="tab-panel">
+                    <div class="card-panel">
+                        <div class="panel-header">
+                            <h3><i class="fa-solid fa-book-bookmark"></i> MinM Jam 시스템 필수 준수사항 & 템플릿 구조</h3>
+                        </div>
+                        <div class="grid-2col">
+                            <div class="info-card-panel">
+                                <h4>📌 Jam 시스템 핵심 3대 규칙</h4>
+                                <ul class="rule-list">
+                                    <li><strong>Rule 1 (실시간 최신성):</strong> 모든 데이터는 작성 직전 토스 API 및 실시간 검색으로 검증 후 반영한다.
+                                    </li>
+                                    <li><strong>Rule 2 (3대 데일리 브리핑):</strong> [장전/주말], [장중], [장마감] 템플릿을 엄격히 구분하여 브리핑한다.
+                                    </li>
+                                    <li><strong>Rule 3 (8대 고정 테마):</strong> 반도체·AI, 2차전지, 조선, 원전·에너지, 건설·정책, 바이오,
+                                        IT·콘텐츠, 화장품 고정 관리.</li>
+                                </ul>
+                            </div>
+                            <div class="info-card-panel">
+                                <h4>📑 템플릿 구조 (A/B/C)</h4>
+                                <ul class="rule-list">
+                                    <li><strong>템플릿 A [장전/주말]:</strong> 뉴욕증시 마감, 국장 전망, 금일 주력 이슈 테마 구성</li>
+                                    <li><strong>템플릿 B [장중]:</strong> 수급 동향, 장중 피크 특징주, 마켓 트렌드 요약</li>
+                                    <li><strong>템플릿 C [장마감]:</strong> 지수 마감 결과 + 장전 예측과 실제 결과 팩트검증 테이블 작성</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
