@@ -11,3 +11,11 @@ _cache/
 # 대용량 임시 산출물
 _tmp/
 *.log
+
+# Local environment and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
