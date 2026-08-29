@@ -29,3 +29,6 @@ _Researcher 에이전트만 읽고 쓰는 개인 노트. 학습·교훈·자주 
 - [2026-08-29] 파일과 C:\\\\Users\\\pado7\\\antigravity\\\connectailab연구\\\AI office\\\_company\\\ 파일의 겹치는 부분을 분석하고, 분리해야 할 부분을 분류 → 산출물 sessions/2026-08-29T07-28/researcher.md
 - [2026-08-29] 사용자의 명령, 최신 파일 정보를 받아 분석하여 최신 파일 정보로 정리 → 산출물 sessions/2026-08-29T07-31/researcher.md
 - [2026-08-29] MinM Briefing 자료의 저장 위치 및 저장 방법에 대한 정보를 수집. → 산출물 sessions/2026-08-29T07-34/researcher.md
+- [2026-08-29] 회사 목표에 맞는 최적화된 단일 작업을 찾기. (ex. 비즈니스 전략, 타겟고객 분석) → 산출물 sessions/2026-08-29T08-05/researcher.md
+- [2026-08-29] 메모리와 2026년 8월 29일 과거의 정보 검토 → 산출물 sessions/2026-08-29T08-20/researcher.md
+- [2026-08-29] 2. 2026년 8월 29일 1인 기업의 가장 중요한 문제점, 가능성, 기회 및 시장 트렌드를 분석 → 산출물 sessions/2026-08-29T08-35/researcher.md
