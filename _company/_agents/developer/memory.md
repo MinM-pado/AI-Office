@@ -11,3 +11,6 @@ _코다리 에이전트만 읽고 쓰는 개인 노트. 학습·교훈·자주 �
 - [2026-08-01] 프론트 페이지를 개발하였습니다. → 산출물 sessions/2026-08-01T08-06/developer.md
 - [2026-08-22] Index.html에서 AI Office x 토스증권 Open API Hub, MinM Jam Briefing 정보 삭제, Connect AI 창에 반도체 한자 사용 금지 기능 추가 → 산출물 sessions/2026-08-22T12-10/developer.md
 - [2026-08-22] 코드 분석 및 문제점 검토 → 산출물 sessions/2026-08-22T12-29/developer.md
+- [2026-08-29] app.py 전체 코드 작성 → 산출물 sessions/2026-08-29T09-19/developer.md
+- [2026-08-29] 코다리 실해줘. 수배전설비 열화상 AI 실시간 진단 시스템 → 산출물 sessions/2026-08-29T09-28/developer.md
+- [2026-08-29] API 연결, 실시간 데이터 수집, 시스템 분석 → 산출물 sessions/2026-08-29T09-29/developer.md
