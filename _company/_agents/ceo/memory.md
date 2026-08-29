@@ -81,3 +81,5 @@ _CEO 에이전트만 읽고 쓰는 개인 노트. 학습·교훈·자주 쓰는 
 - [2026-08-29] analyzer.py 전체코드를 알려줄게. 절대 잊미마라  import os import glob from pathlib import Path import pandas as pd import cv2 import numpy as np  def analyze_folder(input_dir, brightness_threshold, hot_pixel_ratio_threshold, min_image_size):     """     폴더 내의 열화상 이미지를 분석하여 데이터프레임으로 반환하는 함수     """     results = []
 - [2026-08-29] 코다리 실해줘. 수배전설비 열화상 AI 실시간 진단 시스템 → 보고서 sessions/2026-08-29T09-28/_report.md
 - [2026-08-29] 실행해줘, 수배전설비 열화상 AI 실시간 진단 시스템 → 보고서 sessions/2026-08-29T09-29/_report.md
+- [2026-08-29] [자율 사이클 — 2026-08-29] 1인 기업 24시간 운영 중. 회사 목표·각 에이전트의 개인 목표(_agents/{id}/goal.md)·최근 의사결정·메모리를 검토해서 지금 가장 가치 있는 단일 작업 1개를 결정하고, 적절한 1~2명 에이전트에게 분배해서 실행하세요. 같은 산출물을 반복하지 마세요 — 메모리에 비슷한 항목이 24시간 내에 있으면 다른 각도로 진전시키세요. → 보고서 sessions/2026-08-29T09-35/_report.md
+- [2026-08-29] 실행하라 수배전설비 열화상 AI 실시간 진단 시스템 → 보고서 sessions/2026-08-29T09-37/_report.md
